@@ -1,1 +1,35 @@
+# 项目输出目录
 output/
+
+# Python 编译产物
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# 虚拟环境
+venv/
+.env/
+.env.local
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+
+# 编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS 文件
+.DS_Store
+Thumbs.db
+
+# Docker 环境变量（包含敏感信息）
+docker/.env

@@ -230,9 +230,9 @@ notification:
   # 💡 想要精准定时？建议使用 Docker 部署在个人服务器上
   push_window:
     enabled: true                    # 是否启用推送时间窗口控制
-    start: "08:00"                    # 开始时间（北京时间）
+    start: "07:00"                    # 开始时间（北京时间）- 覆盖早上7点推送
     end: "21:00"                      # 结束时间（北京时间）
-    once_per_day: true                # true=窗口内只推送一次，false=窗口内每次执行都推送
+    once_per_day: false               # true=窗口内只推送一次，false=窗口内每次执行都推送（每天7/12/20点各推送一次）
 
   # 推送渠道配置
   channels:
@@ -401,8 +401,8 @@ ai_analysis:
   # 💡 想要精准定时？建议使用 Docker 部署在个人服务器上
   analysis_window:
     enabled: true                  # 是否启用 AI 分析时间窗口控制
-    start: "16:00"                  # 开始时间（使用 app.timezone 配置的时区）
-    end: "20:00"                    # 结束时间（使用 app.timezone 配置的时区）
+    start: "20:00"                  # 开始时间（使用 app.timezone 配置的时区）- 只在晚上20点执行
+    end: "21:00"                    # 结束时间（使用 app.timezone 配置的时区）
     once_per_day: true             # true=窗口内只分析一次，false=窗口内每次执行都分析
 
   # 分析报告输出语言
@@ -424,7 +424,7 @@ ai_analysis:
   #   - 推送 incremental（避免重复），AI 分析 current（看当前榜单变化）
   #   - 推送 current（实时热点），AI 分析 daily（全天总结）
   #
-  mode: "follow_report"
+  mode: "daily"                     # 使用每日汇总模式，做全天新闻总结
 
   # 分析内容配置
   max_news_for_analysis: 60         # 参与分析的新闻数量上限（控制成本关键项）

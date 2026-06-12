@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: trendradar-news
+    env: docker
+    plan: free
+    region: oregon
+    branch: master
+    dockerContext: .
+    dockerfilePath: ./docker/Dockerfile
+    envVars:
+      - key: DINGTALK_WEBHOOK_URL
+        sync: false
+      - key: AI_API_KEY
+        sync: false
+      - key: AI_MODEL
+        sync: false
+      - key: AI_API_BASE
+        sync: false
+      - key: AI_ANALYSIS_ENABLED
+        sync: false
+      - key: TZ
+        value: Asia/Shanghai
+
+cronJobs:
+  - name: crawl-news
+    command: python -m trendradar crawl --once
+    schedule: '0 7,12,20 * * *'
+    envVars:
+      - key: DINGTALK_WEBHOOK_URL
+        sync: false
+      - key: AI_API_KEY
+        sync: false
+      - key: AI_MODEL
+        sync: false
+      - key: AI_API_BASE
+        sync: false
+      - key: AI_ANALYSIS_ENABLED
+        sync: false

@@ -33,3 +33,6 @@ Thumbs.db
 
 # Docker 环境变量（包含敏感信息）
 docker/.env
+
+# Local environment variables
+.env

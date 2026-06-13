@@ -77,6 +77,8 @@ jobs:
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           AI_MODEL: ${{ secrets.AI_MODEL }}
           AI_API_BASE: ${{ secrets.AI_API_BASE }}
+          # litellm 对 Gemini 的 API Key 优先查找 GEMINI_API_KEY 环境变量
+          GEMINI_API_KEY: ${{ secrets.AI_API_KEY }}
           # 远程存储配置
           S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
           S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID }}

@@ -265,12 +265,16 @@ def _load_ai_config(config_data: Dict) -> Dict:
 
     timeout_env = _get_env_int_or_none("AI_TIMEOUT")
 
+    # 环境变量仅在配置文件未设置时才生效（空字符串视为未设置）
+    model_from_config = ai_config.get("model", "").strip()
+    key_from_config = ai_config.get("api_key", "").strip()
+    base_from_config = ai_config.get("api_base", "").strip()
+
     return {
         # LiteLLM 核心配置
-        # 环境变量优先级高于配置文件（只有当环境变量非空时才覆盖）
-        "MODEL": ai_config.get("model", "") or _get_env_str("AI_MODEL"),
-        "API_KEY": ai_config.get("api_key", "") or _get_env_str("AI_API_KEY"),
-        "API_BASE": ai_config.get("api_base", "") or _get_env_str("AI_API_BASE"),
+        "MODEL": model_from_config or _get_env_str("AI_MODEL"),
+        "API_KEY": key_from_config or _get_env_str("AI_API_KEY"),
+        "API_BASE": base_from_config or _get_env_str("AI_API_BASE"),
 
         # 生成参数
         "TIMEOUT": timeout_env if timeout_env is not None else ai_config.get("timeout", 120),

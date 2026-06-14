@@ -79,6 +79,9 @@ class AIAnalyzer:
 
         # 从分析配置获取功能参数
         self.max_news = analysis_config.get("MAX_NEWS_FOR_ANALYSIS", 50)
+        # 0 表示无限制，设为极大值
+        if self.max_news == 0:
+            self.max_news = 999999
         self.include_rss = analysis_config.get("INCLUDE_RSS", True)
         self.include_rank_timeline = analysis_config.get("INCLUDE_RANK_TIMELINE", False)
         self.include_standalone = analysis_config.get("INCLUDE_STANDALONE", False)

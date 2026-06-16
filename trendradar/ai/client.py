@@ -64,6 +64,7 @@ class AIClient:
             "temperature": kwargs.get("temperature", self.temperature),
             "timeout": kwargs.get("timeout", self.timeout),
             "num_retries": kwargs.get("num_retries", self.num_retries),
+            "retry_after": 10,  # 重试间隔 10 秒，避免 Gemini 503 立即重试
         }
 
         # 添加 API Key
